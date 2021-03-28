@@ -10,9 +10,7 @@ $pdo = new PDO($dsn, $user, $password, $opt);
 $birth_date = trim($_POST['year_of_birth']);
 $sql = "SELECT * FROM users WHERE bdate LIKE '$birth_date%'";
 $stmt = $pdo->query($sql);
-$sql_2 = "SELECT COUNT(*) FROM users WHERE bdate LIKE '$birth_date%'";
-$stmt_2 = $pdo->query($sql_2);
-$count = $stmt_2->fetchColumn();
+$count = $stmt->rowCount();
 
 if ($_POST['year_of_birth'] == "") {
 	echo "Введите год рождения!!!<a href='/Test_website/'>На главную</a>";
