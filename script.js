@@ -18,31 +18,3 @@ document.forms.Users.onsubmit = function (e) {
 	}
 	xhr.send(formDate);
 };
-
-
-
-
-
-
-
-
-
-
-/*var form = document.querySelector('#myForm');
-
-form.addEventListener('submit', function(evt){
-	evt.preventDefault();
-
-	var formData = {
-		year_of_birth: document.querySelector('input[name="year_of_birth"].value')
-	};
-	var request = new XMLHttpRequest();
-
-	request.addEventListener('load', function(){
-		alert('Результат по вашему запросу.')
-	});
-	request.open('POST', '/check.php', true);
-	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencode; charset=UTF-8');
-	request.send
-}
-)*/
