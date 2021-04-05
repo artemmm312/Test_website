@@ -9,8 +9,16 @@
 </head>
 
 <body>
+	<form name="users" action="check.php" method="post">
+		<label>Введите год рождения:</label><br />
+		<input type="text" name="year_of_birth" placeholder="год рождения(4 цифры)" maxlength="4" /><br />
+		<input type="submit" name="done" value="Показать" />
+	</form>
+
 	<?php
-	require_once 'connection.php';
+//require_once 'connection.php';
+
+	/** Вывод таблицы через запросы PDO
 	$dsn = "mysql:host=$host;dbname=$database";
 	$opt = [
 			PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -18,7 +26,6 @@
 			PDO::ATTR_EMULATE_PREPARES   => false,
 	];
 	$pdo = new PDO($dsn, $user, $password, $opt);
-
 	$sql = 'SELECT * FROM users WHERE bdate BETWEEN "1990-01-01" AND "1990-12-31"';
 	$stmt = $pdo->query($sql);
 	if ($stmt){
@@ -30,13 +37,12 @@
 	}
 	echo "</table>";
 	}
+	 */
 
-	/**
+	/** Вывод таблицы через запросы mysqli
 	$link = mysqli_connect($host, $user, $password, $database)
 		or die("Ошибка" . mysqli_error($link));
-
 	$query = "SELECT * FROM users WHERE bdate BETWEEN '1990-01-01' AND '1990-12-31'";
-
 	$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 	if ($result) {
 		$rows = mysqli_num_rows($result); // количество полученных строк
@@ -48,12 +54,11 @@
 			echo "</tr>";
 		}
 		echo "</table>";
-
 		// очищаем результат
 		mysqli_free_result($result);
 	}
 	mysqli_close($link)
-	*/
+	 */
 	?>
 </body>
 
