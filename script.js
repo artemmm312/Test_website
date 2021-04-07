@@ -32,34 +32,22 @@ document.forms.Users.onsubmit = function (e) {
 		};
 		sendRequest('POST', requestURL, body)
 			.then(data => {
-				let servResponse = document.querySelector('#request');
+				let div = document.querySelector('#request');
 				if (data.length == 0) {
-					servResponse.outerHTML = `<a>"Юзеров с таким годом рождения нет."</a><a href='/Test_website/'>На главную</a>"`;
+					div.innerHTML = `<a>"Юзеров с таким годом рождения нет."</a><a href='/Test_website/'>На главную</a>"`;
 				} else {
-					servResponse.outerHTML = `
-					<table class="users" border='1' cellspacing='0' width='50%'><tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr></table>
-					`;
-					document.body.insertAdjacentHTML("afterend", `<a href='/Test_website/'>На главную</a>`);
+					let table = `<table border='1' cellspacing='0' width='50%'>
+					<tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>`;
 
-					let table = document.querySelector('.users');
-
-					function creatTable(table, data) {
-						for (let i = 0; i < data.length; i++) {
-							let object = data[i];
-							let row = document.createElement('tr');
-							for (let key in object) {
-								/* let banner = document.createElement('th');
-								banner.innerHTML = key;
-								row.appendChild(banner); */
-								let value = object[key];
-								let cell = document.createElement('td');
-								cell.innerHTML = value;
-								row.appendChild(cell);
-							}
-							table.appendChild(row);
+					for (let i = 0; i < data.length; i++) {
+						table += "<tr></tr>"
+						for (let j in data[i]) {
+							table += `<td>${data[i][j]}</td>`;
 						}
 					}
-					creatTable(table, data)
+					table += "</table>"
+					div.innerHTML = table;
+					document.body.insertAdjacentHTML("afterend", `<a href='/Test_website/'>На главную</a>`);
 				}
 			})
 			.catch(err => console.log(err))

@@ -7,13 +7,11 @@ $opt = [
 	PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
-//$birth_date = trim($_POST['year_of_birth']);
 $input = json_decode(file_get_contents("php://input"), true);
-$birth_data = (int)$input['year_of_birth'];
-//$birth_data = (int)$birth->year_of_birth;
-$sql = "SELECT * FROM users WHERE bdate LIKE '$birth_data%'";
+$birth_data = $input['year_of_birth'];
+$sql = 'SELECT * FROM users WHERE bdate LIKE ?';
 $stmt = $pdo->prepare($sql);
-$stmt->execute();
+$stmt->execute(["$birth_data%"]);
 $row = $stmt->fetchAll();
 echo json_encode($row);
 
