@@ -8,12 +8,19 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 $input = json_decode(file_get_contents("php://input"), true);
-$birth_data = $input['year_of_birth'];
-$sql = 'SELECT * FROM users WHERE bdate LIKE ?';
+$year_1 = $input['year_of_birth'];
+$year_2 = $year_1 + 1;
+$date_1 = (string)$year_1 . "-01-01";
+$date_2 = (string)$year_2 . "-01-01";
+$sql = 'SELECT * FROM users WHERE bdate >= ? AND bdate < ?';
 $stmt = $pdo->prepare($sql);
-$stmt->execute(["$birth_data%"]);
+$stmt->bindValue(1, $date_1);
+$stmt->bindValue(2, $date_2);
+$stmt->execute();
 $row = $stmt->fetchAll();
 echo json_encode($row);
+
+
 
 
 
