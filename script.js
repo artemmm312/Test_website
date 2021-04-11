@@ -15,12 +15,13 @@ async function sendRequest(method, url, body = null) {
 			return response.json()
 		};
 		return response.json().then(error => {
-			const e = new Error('Что-то пошло не так');
-			e.data = error;
-			throw e
+			const err = new Error('Что-то пошло не так');
+			err.data = error;
+			throw err
 		})
 	});
 };
+
 document.forms.Users.onsubmit = function (e) {
 	e.preventDefault();
 	let year = document.querySelector('input[name="year_of_birth"]').value;
@@ -34,18 +35,18 @@ document.forms.Users.onsubmit = function (e) {
 			.then(data => {
 				let div = document.querySelector('#request');
 				if (data.length == 0) {
-					div.innerHTML = `<a>"Юзеров с таким годом рождения нет."</a><a href='/Test_website/'>На главную</a>"`;
+					div.innerHTML = `<a>"Юзеров с таким годом рождения нет."</a><a href='/Test_website/'>На главную</a>`;
 				} else {
 					let table = `<table border='1' cellspacing='0' width='50%'>
 					<tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>`;
 
 					for (let i = 0; i < data.length; i++) {
-						table += "<tr></tr>"
+						table += "<tr></tr>";
 						for (let j in data[i]) {
 							table += `<td>${data[i][j]}</td>`;
 						}
 					}
-					table += "</table>"
+					table += "</table>";
 					div.innerHTML = table;
 					document.body.insertAdjacentHTML("afterend", `<a href='/Test_website/'>На главную</a>`);
 				}
