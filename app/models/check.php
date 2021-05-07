@@ -1,5 +1,7 @@
 <?php
+
 require_once 'connection.php';
+
 $dsn = "mysql:host=$host;dbname=$database";
 $opt = [
 	PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -18,7 +20,13 @@ $stmt->bindValue(1, $date_1);
 $stmt->bindValue(2, $date_2);
 $stmt->execute();
 $row = $stmt->fetchAll();
-echo json_encode($row);
+$data = json_encode($row);
+echo $data;
+
+
+
+
+
 
 
 

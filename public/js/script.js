@@ -1,6 +1,6 @@
 "use strict";
 
-const requestURL = 'check.php'
+const requestURL = '';
 
 async function sendRequest(method, url, body = null) {
 	const headers = {
@@ -39,7 +39,6 @@ document.forms.Users.onsubmit = function (e) {
 				} else {
 					let table = `<table border='1' cellspacing='0' width='50%'>
 					<tr><th>Id</th><th>first_name</th><th>last_name</th><th>bdate</th></tr>`;
-
 					for (let i = 0; i < data.length; i++) {
 						table += "<tr></tr>";
 						for (let j in data[i]) {
