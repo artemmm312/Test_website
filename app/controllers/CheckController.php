@@ -10,7 +10,8 @@ class CheckController extends Controller
 {
 	public function check(Request $request, Response $response): Response
 	{
-		$result = CheckModel::class . ':checkUser';
+		$model = new CheckModel;
+		$result = $model->checkUser();
 		$response->getBody()->write(json_encode($result));
 		return $response
 			->withHeader('Content-Type', 'application/json')

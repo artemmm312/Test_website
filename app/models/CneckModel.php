@@ -2,11 +2,26 @@
 
 namespace App\models;
 
-class CheckModel extends Model
+use PDO;
+
+class CheckModel
 {
+	//public $pdo;
+
 	public function checkUser()
 	{
-		$pdo = $this->db;
+		$host = 'localhost';
+		$database = 'fp';
+		$user = 'root';
+		$password = '1111';
+		$opt = [
+			PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+			PDO::ATTR_EMULATE_PREPARES   => false,
+		];
+		$dsn = "mysql:host=$host;dbname=$database";
+		$pdo = new PDO($dsn, $user, $password, $opt);
+		//$pdo = $this->db;
 		$input = json_decode(file_get_contents("php://input"), true);
 		$year_1 = $input['year_of_birth'];
 		$year_2 = $year_1 + 1;
@@ -20,6 +35,7 @@ class CheckModel extends Model
 		//$row = $stmt->fetchAll();
 		$data = $stmt->fetchAll();
 		//$data = json_encode($row);
-		return $data;
+		//return $data;
+		echo $data;
 	}
 }

@@ -11,7 +11,7 @@ $container->set('view', function () {
 	return Twig::create(__DIR__ . '/../views', ['cache' => false]);
 });
 
-
+/* 
 $container->set('db', function () {
 	$host = 'localhost';
 	$database = 'fp';
@@ -24,4 +24,4 @@ $container->set('db', function () {
 	];
 	$dsn = "mysql:host=$host;dbname=$database";
 	return new PDO($dsn, $user, $password, $opt);
-});
+}); */

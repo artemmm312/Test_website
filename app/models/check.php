@@ -1,6 +1,6 @@
 <?php
 
-require_once 'connection.php';
+/* require_once 'connection.php';
 
 $dsn = "mysql:host=$host;dbname=$database";
 $opt = [
@@ -21,7 +21,7 @@ $stmt->bindValue(2, $date_2);
 $stmt->execute();
 $row = $stmt->fetchAll();
 $data = json_encode($row);
-echo $data;
+echo $data; */
 
 
 
