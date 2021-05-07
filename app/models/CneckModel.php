@@ -2,11 +2,11 @@
 
 namespace App\models;
 
-class CheckModel
+class CheckModel extends Model
 {
-	public function checkUser($container)
+	public function checkUser()
 	{
-		$pdo = $container->db;
+		$pdo = $this->db;
 		$input = json_decode(file_get_contents("php://input"), true);
 		$year_1 = $input['year_of_birth'];
 		$year_2 = $year_1 + 1;
