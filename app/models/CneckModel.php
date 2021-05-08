@@ -35,7 +35,7 @@ class CheckModel
 		//$row = $stmt->fetchAll();
 		$data = $stmt->fetchAll();
 		//$data = json_encode($row);
-		//return $data;
-		echo $data;
+		return $data;
+		//echo $data;
 	}
 }
