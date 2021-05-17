@@ -1,6 +1,4 @@
 <?php
 
-require '../bootstrap/app.php';
-require '../routes/web.php';
-$app->run();
+(require __DIR__ . '/../config/bootstrap.php')->run();
 
