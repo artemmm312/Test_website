@@ -2,13 +2,21 @@
 
 namespace App\controllers;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Views\Twig;
 
-class HomeController extends Controller
+final class HomeController
 {
-	public function home(Request $request, Response $response): Response
+	private $twig;
+
+	public function __construct(Twig $twig)
 	{
-		return $this->view->render($response, 'form.html');
+		$this->twig = $twig;
+	}
+
+	public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+	{
+		return $this->twig->render($response, 'form.html');
 	}
 }
